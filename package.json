@@ -1,0 +1,26 @@
+{
+  "name": "odin-todo-list",
+  "version": "1.0.0",
+  "description": "Project from [TOP](https://www.theodinproject.com/lessons/node-path-javascript-todo-list).  - OOP Principles - More webpack practice - Use of localStorage",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudnam/odin-todo-list.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rudnam/odin-todo-list/issues"
+  },
+  "homepage": "https://github.com/rudnam/odin-todo-list#readme",
+  "devDependencies": {
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}
