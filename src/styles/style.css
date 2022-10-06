@@ -1,0 +1,124 @@
+/* style.css */
+@font-face {
+    font-family: Matter;
+    src: url(../fonts/Matter-Regular.otf);
+  }
+
+@font-face {
+    font-family: Matter;
+    src: url(../fonts/Matter-Bold.otf);
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --white: #fff;
+    --black: #1f2028;
+    --blue: #36a3ff;
+    --light: #a9adc1;
+    --grey: #2e3039;
+    --red: #ff4545;
+    --yellow: #ffd644;
+    --transparent: #2e303941;
+    --default-width: min(800px,100%);
+
+    font-family: "Matter",sans-serif;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--black);
+    color: var(--light);
+}
+
+header {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--blue);
+    padding: 10px;
+    padding-left: 50px;
+    border: 1px solid var(--grey);
+}
+
+.header {
+    margin: auto;
+}
+
+#content {
+    padding: 20px 50px;
+    min-height: 100%;
+}
+
+#title {
+    font-size: 1.2rem;
+}
+
+#container {
+    margin-top: 10px;
+    padding: 10px 0px 20px;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 250px;
+    align-items: flex-start;
+    gap: 15px;
+    overflow-x: auto;
+}
+
+#add-list:hover {
+    background-color: var(--grey);
+    cursor: pointer;
+}
+
+#add-list p {
+    text-align: center;
+}
+
+.list {
+    border: 1px solid var(--grey);
+    border-radius: 7px;
+    padding: 10px;
+    background-color: var(--transparent)
+}
+
+.list p {
+    padding: 10px;
+}
+
+.list li {
+    padding: 10px 10px 10px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.list li:hover {
+    background-color: var(--grey);
+}
+
+footer {
+    text-align: center;
+    margin-top: auto;
+    padding: 10px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+}
