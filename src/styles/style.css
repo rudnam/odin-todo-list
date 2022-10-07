@@ -21,6 +21,7 @@
     --blue: #36a3ff;
     --light: #a9adc1;
     --grey: #2e3039;
+    --light-sub: #7a7c85;
     --red: #ff4545;
     --yellow: #ffd644;
     --transparent: #2e303941;
@@ -113,12 +114,6 @@ header {
     padding: 10px;
 }
 
-.list p {
-    padding: 10px;
-    text-overflow: ellipsis;
-    overflow: hidden;
-}
-
 .list *:focus {
     outline: none;
 }
@@ -126,8 +121,24 @@ header {
 .todo {
     padding: 10px;
     border-radius: 5px;
-    cursor: pointer;
     display: flex;
+}
+
+.todo-body {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.todo-desc {
+    font-size: 0.8rem;
+    color: var(--light-sub);
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 .todo-mark, .todo-close, .list-options, .add-todo-mark {
@@ -150,9 +161,38 @@ header {
     display: flex;
 }
 
-.todo:hover {
-    background-color: var(--grey);
+.add-todo-label {
+    padding: 10px;
 }
+
+.add-todo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.add-todo-area {
+    color: inherit;
+    font-family: inherit;
+    background: none;
+    border: none;
+    overflow: auto;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+}
+
+.todo:hover:not(:focus) {
+    background-color: var(--grey);
+    cursor: pointer;
+}
+
+/* doesnt work */
+.todo:focus:not(:hover) {
+    cursor: inherit;
+    background-color: #1f2028;
+}
+
 
 footer {
     text-align: center;

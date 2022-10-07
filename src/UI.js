@@ -32,7 +32,9 @@ const DOM = (() => {
     const createTodo = (task) => {
         const todo = document.createElement('div');
         const todoMark = document.createElement('img');
+        const todoBody = document.createElement('div');
         const todoTitle = document.createElement('p');
+        const todoDesc = document.createElement('p');
         const todoClose = document.createElement('img');
 
         todoMark.src = checkOutline;
@@ -50,14 +52,29 @@ const DOM = (() => {
         todo.onmouseout = function() {
             todoClose.style.visibility = 'hidden';
         }
+        todo.addEventListener('focus', function () {
+            todoDesc.style.overflow = 'visible';
+        })
+        todo.addEventListener('focusout', function() {
+            task.title = todoTitle.innerText;
+            task.description = todoDesc.innerText;
+            update();
+        })
         todoClose.style.visibility = 'hidden';
         todoClose.classList.add('todo-close');
 
 
         todoTitle.innerText = task.title;
         todoTitle.classList.add('todo-title');
+        todoTitle.contentEditable = 'true';
+        todoDesc.classList.add('todo-desc');
+        todoDesc.innerText = task.description;
+        todoDesc.contentEditable = 'true';
+        todoBody.classList.add('todo-body');
+        todoBody.appendChild(todoTitle);
+        todoBody.appendChild(todoDesc);
         todo.appendChild(todoMark);
-        todo.appendChild(todoTitle);
+        todo.appendChild(todoBody);
         todo.appendChild(todoClose);
 
         todo.classList.add('todo');
@@ -67,9 +84,10 @@ const DOM = (() => {
     const createAddTodo = (listid) => {
         const addTodo = document.createElement('div');
         const addTodoLabel = document.createElement('p');
+        const addTodoForm = document.createElement('div');
         const addTodoInput = document.createElement('input');
+        const addTodoArea = document.createElement('textarea');
         const addTodoMark = document.createElement('img');
-
 
         addTodoMark.classList.add('add-todo-mark');
         addTodoMark.src = add;
@@ -78,9 +96,14 @@ const DOM = (() => {
         addTodoLabel.classList.add('add-todo-label');
         addTodoInput.classList.add('add-todo-input');
         addTodoInput.placeholder = "Title";
-        addTodoInput.style.display = 'none';
+        addTodoArea.classList.add('add-todo-area');
+        addTodoArea.placeholder = "description";
+        addTodoForm.style.display = 'none';
+        addTodoForm.appendChild(addTodoInput);
+        addTodoForm.appendChild(addTodoArea);
+        addTodoForm.classList.add('add-todo-form');
         addTodo.appendChild(addTodoLabel);
-        addTodo.appendChild(addTodoInput);
+        addTodo.appendChild(addTodoForm);
         addTodo.classList.add('todo');
         addTodo.classList.add('add-todo');
         addTodo.dataset.listid = listid;
@@ -89,25 +112,26 @@ const DOM = (() => {
             if (addTodo.contains(e.target)) {
                 addTodoLabel.style.display = 'none';
                 addTodoMark.style.display = 'none';
-                addTodoInput.style.display = 'block';
-                addTodoInput.focus();
+                addTodoForm.style.display = 'flex';
             } else {
                 addTodoLabel.style.display = 'block';
                 addTodoMark.style.display = 'block';
-                addTodoInput.style.display = 'none';
+                addTodoForm.style.display = 'none';
             }
         });
 
-        addTodoInput.addEventListener('keyup', function(e) {
+        addTodoForm.addEventListener('keyup', function(e) {
             if (e.key == 'Enter') {
-                app.addTodo(addTodoInput.value,'test description',listid);
+                app.addTodo(addTodoInput.value,addTodoArea.value,listid);
                 addTodoLabel.style.display = 'block';
                 addTodoMark.style.display = 'block';
-                addTodoInput.style.display = 'none';
+                addTodoForm.style.display = 'none';
                 addTodoInput.value = '';
+                addTodoArea.value = '';
                 update();
             }
         })
+        
 
         return addTodo;
         
@@ -139,6 +163,7 @@ const DOM = (() => {
 
         divListTitle.addEventListener('focusout', function() {
             list.name = divListTitle.innerText;
+            update();
         })
 
         return divList;
