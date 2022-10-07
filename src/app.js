@@ -2,9 +2,10 @@
 
 import List from "./lists";
 import ToDo from "./todos";
+import { storages } from "./storage";
 
 export const app = (() => {
-    let lists = [];
+    let lists = storages.getData() || [];
 
     const addList = (name) => {
         const newList = new List(name);
@@ -19,9 +20,19 @@ export const app = (() => {
             }
         })
     }
+
+    const removeTodo = (id) => {
+        // implement
+    }
+
     const getContent = () => {
+        updateContent();
         console.log([...lists]);
         return [...lists];
+    }
+
+    const updateContent = () => {
+        localStorage.setItem('lists', JSON.stringify(lists));
     }
 
     return {addList,

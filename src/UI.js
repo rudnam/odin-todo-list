@@ -1,6 +1,11 @@
 // UI.js
 
 import { app } from "./app";
+import checkOutline from './images/check_outline.svg';
+import check from './images/check.svg';
+import close from './images/close.svg';
+import more from './images/more.svg';
+import add from './images/add.svg';
 
 const DOM = (() => {
     const createTitle = () => {
@@ -24,19 +29,52 @@ const DOM = (() => {
         return container;
     }
 
-    const createTodo = (todo) => {
-        const item = document.createElement('li');
-        item.innerText = todo.title;
-        item.classList.add('todo');
-        return item;
+    const createTodo = (task) => {
+        const todo = document.createElement('div');
+        const todoMark = document.createElement('img');
+        const todoTitle = document.createElement('p');
+        const todoClose = document.createElement('img');
+
+        todoMark.src = checkOutline;
+        todoMark.classList.add('todo-mark');
+        todoMark.onmouseover = function() {
+            todoMark.src = check;
+        }
+        todoMark.onmouseout = function() {
+            todoMark.src = checkOutline;
+        }
+        todoClose.src = close;
+        todo.onmouseover = function() {
+            todoClose.style.visibility = 'visible';
+        }
+        todo.onmouseout = function() {
+            todoClose.style.visibility = 'hidden';
+        }
+        todoClose.style.visibility = 'hidden';
+        todoClose.classList.add('todo-close');
+
+
+        todoTitle.innerText = task.title;
+        todoTitle.classList.add('todo-title');
+        todo.appendChild(todoMark);
+        todo.appendChild(todoTitle);
+        todo.appendChild(todoClose);
+
+        todo.classList.add('todo');
+        return todo;
     }
 
     const createAddTodo = (listid) => {
-        const addTodo = document.createElement('li');
+        const addTodo = document.createElement('div');
         const addTodoLabel = document.createElement('p');
         const addTodoInput = document.createElement('input');
+        const addTodoMark = document.createElement('img');
 
-        addTodoLabel.innerText = "+ Add a task";
+
+        addTodoMark.classList.add('add-todo-mark');
+        addTodoMark.src = add;
+        addTodo.appendChild(addTodoMark);
+        addTodoLabel.innerText = "Add a task";
         addTodoLabel.classList.add('add-todo-label');
         addTodoInput.classList.add('add-todo-input');
         addTodoInput.placeholder = "Title";
@@ -44,15 +82,18 @@ const DOM = (() => {
         addTodo.appendChild(addTodoLabel);
         addTodo.appendChild(addTodoInput);
         addTodo.classList.add('todo');
+        addTodo.classList.add('add-todo');
         addTodo.dataset.listid = listid;
 
         document.body.addEventListener('click', function(e) {
             if (addTodo.contains(e.target)) {
                 addTodoLabel.style.display = 'none';
+                addTodoMark.style.display = 'none';
                 addTodoInput.style.display = 'block';
                 addTodoInput.focus();
             } else {
                 addTodoLabel.style.display = 'block';
+                addTodoMark.style.display = 'block';
                 addTodoInput.style.display = 'none';
             }
         });
@@ -61,6 +102,7 @@ const DOM = (() => {
             if (e.key == 'Enter') {
                 app.addTodo(addTodoInput.value,'test description',listid);
                 addTodoLabel.style.display = 'block';
+                addTodoMark.style.display = 'block';
                 addTodoInput.style.display = 'none';
                 addTodoInput.value = '';
                 update();
@@ -73,18 +115,31 @@ const DOM = (() => {
 
     const createList = (list) => {
         const divList = document.createElement('div');
-        const h = document.createElement('p');
-        const ul = document.createElement('ul');
+        const divListHeader = document.createElement('div');
+        const divListTitle = document.createElement('p');
+        const divListOptions = document.createElement('img');
+        const divListItems = document.createElement('ul');
 
-        h.innerText = list.name;
-        h.contentEditable = 'true';
+
+        divListOptions.classList.add('list-options');
+        divListOptions.src = more;
+        divListTitle.innerText = list.name;
+        divListTitle.contentEditable = 'true';
+        divListTitle.classList.add('list-title');
         divList.classList.add('list');
-        divList.appendChild(h);
-        divList.appendChild(ul);
+        divListHeader.classList.add('list-header');
+        divListHeader.appendChild(divListTitle);
+        divListHeader.appendChild(divListOptions);
+        divList.appendChild(divListHeader);
+        divList.appendChild(divListItems);
         list.getItems().forEach(function(todo) {
-            ul.appendChild(createTodo(todo));
+            divListItems.appendChild(createTodo(todo));
         })
-        ul.appendChild(createAddTodo(list.id));
+        divListItems.appendChild(createAddTodo(list.id));
+
+        divListTitle.addEventListener('focusout', function() {
+            list.name = divListTitle.innerText;
+        })
 
         return divList;
     }

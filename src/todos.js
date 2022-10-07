@@ -4,6 +4,7 @@ export default class ToDo {
     constructor(title,description) {
         this.title = title;
         this.description = description;
+        this.id = "id" + Math.random().toString(16).slice(2);
     }
     get title() {
         return this._title;
