@@ -79,8 +79,22 @@ header {
     cursor: pointer;
 }
 
-#add-list p {
+#add-list-label {
     text-align: center;
+}
+
+#add-list-input, .add-todo-input {
+    padding: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+    background: none;
+    border: none;
+}
+
+#add-list-input:focus, .add-todo-input:focus {
+    border: none;
+    outline: none;
 }
 
 .list {
@@ -94,13 +108,13 @@ header {
     padding: 10px;
 }
 
-.list li {
+.todo {
     padding: 10px 10px 10px 25px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.list li:hover {
+.todo:hover {
     background-color: var(--grey);
 }
 
