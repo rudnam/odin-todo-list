@@ -130,14 +130,48 @@ header {
     padding: 10px;
 }
 
+.todo-edit-body {
+    width: calc(100% - 60px);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+}
+
+.todo-edit-title {
+    margin: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+    background: none;
+    border: none;
+}
+
 .todo-desc {
     font-size: 0.8rem;
     color: var(--light-sub);
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.todo-edit-desc {
+    color: var(--light);
+    font-family: inherit;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+    height: 80px;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+}
+
+.hide-overflow {
     overflow-wrap: anywhere;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
@@ -187,6 +221,10 @@ header {
     cursor: pointer;
 }
 
+
+#clear {
+    align-self: center;
+}
 
 footer {
     text-align: center;

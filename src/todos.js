@@ -19,4 +19,10 @@ export default class ToDo {
     set description(value) {
         this._description = value;
     }
+    get parentid() {
+        return this._parentid;
+    }
+    set parentid(value) {
+        this._parentid = value;
+    }
 }

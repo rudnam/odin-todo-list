@@ -35,18 +35,19 @@ const DOM = (() => {
         const todoBody = document.createElement('div');
         const todoTitle = document.createElement('p');
         const todoDesc = document.createElement('p');
+        const todoEditBody = document.createElement('div');
+        const todoEditTitle = document.createElement('input');
+        const todoEditDesc = document.createElement('textarea');
         const todoClose = document.createElement('img');
 
-        todoMark.src = checkOutline;
-        todoMark.classList.add('todo-mark');
+        
         todoMark.onmouseover = function() {
             todoMark.src = check;
         }
         todoMark.onmouseout = function() {
             todoMark.src = checkOutline;
         }
-        todoClose.src = close;
-
+        
         todoClose.addEventListener('click', function () {
             app.removeTodo(task);
             update();
@@ -58,29 +59,53 @@ const DOM = (() => {
         todo.onmouseout = function() {
             todoClose.style.visibility = 'hidden';
         }
-        todo.addEventListener('focus', function () {
-            todoDesc.style.overflow = 'visible';
-        })
-        todo.addEventListener('focusout', function() {
-            task.title = todoTitle.innerText;
-            task.description = todoDesc.innerText;
-            update();
-        })
+
+        todo.onclick = function() {
+            todoBody.style.display = 'none';
+            todoEditBody.style.display = 'flex';
+
+            document.body.onclick = function(e) {
+                if (!todo.contains(e.target)) {
+                    task.title = todoEditTitle.value;
+                    task.description = todoEditDesc.value;
+                    todoBody.style.display = 'flex';
+                    todoEditBody.style.display = 'none';
+                    
+                    update();
+                }
+            }
+        }
+
+        todoEditBody.classList.add('todo-edit-body');
+        todoEditTitle.classList.add('todo-edit-title');
+        todoEditDesc.classList.add('todo-edit-desc');
+        
+
+        todoEditBody.style.display = 'none';
+        todoEditTitle.placeholder = 'Title';
+        todoEditTitle.value = task.title;
+        todoEditDesc.placeholder = 'description';
+        todoEditDesc.value = task.description;
+
+        todoClose.src = close;
         todoClose.style.visibility = 'hidden';
         todoClose.classList.add('todo-close');
-
-
+        todoMark.src = checkOutline;
+        todoMark.classList.add('todo-mark');
         todoTitle.innerText = task.title;
         todoTitle.classList.add('todo-title');
-        todoTitle.contentEditable = 'true';
         todoDesc.classList.add('todo-desc');
+        todoDesc.classList.add('hide-overflow');
         todoDesc.innerText = task.description;
-        todoDesc.contentEditable = 'true';
         todoBody.classList.add('todo-body');
+
+        todoEditBody.appendChild(todoEditTitle);
+        todoEditBody.appendChild(todoEditDesc);
         todoBody.appendChild(todoTitle);
         todoBody.appendChild(todoDesc);
         todo.appendChild(todoMark);
         todo.appendChild(todoBody);
+        todo.appendChild(todoEditBody);
         todo.appendChild(todoClose);
 
         todo.classList.add('todo');
@@ -112,22 +137,23 @@ const DOM = (() => {
         addTodo.appendChild(addTodoForm);
         addTodo.classList.add('todo');
         addTodo.classList.add('add-todo');
-        addTodo.dataset.listid = listid;
 
-        document.body.addEventListener('click', function(e) {
-            if (addTodo.contains(e.target)) {
-                addTodoLabel.style.display = 'none';
-                addTodoMark.style.display = 'none';
-                addTodoForm.style.display = 'flex';
-            } else {
-                addTodoLabel.style.display = 'block';
-                addTodoMark.style.display = 'block';
-                addTodoForm.style.display = 'none';
+        addTodo.onclick = function(e) {
+            addTodoLabel.style.display = 'none';
+            addTodoMark.style.display = 'none';
+            addTodoForm.style.display = 'flex';
+
+            document.body.onclick = function(e) {
+                if (!addTodo.contains(e.target)) {
+                    addTodoLabel.style.display = 'block';
+                    addTodoMark.style.display = 'block';
+                    addTodoForm.style.display = 'none';
+                }
             }
-        });
+        }
 
         addTodoForm.addEventListener('keyup', function(e) {
-            if (e.key == 'Enter') {
+            if (e.key == 'Enter' && addTodoInput.value) {
                 app.addTodo(addTodoInput.value,addTodoArea.value,listid);
                 addTodoLabel.style.display = 'block';
                 addTodoMark.style.display = 'block';
@@ -190,19 +216,22 @@ const DOM = (() => {
         addList.classList.add('list');
         addList.id = 'add-list';
 
-        document.body.addEventListener('click', function(e) {
-            if (addList.contains(e.target)) {
-                addListLabel.style.display = 'none';
-                addListInput.style.display = 'block';
-                addListInput.focus();
-            } else {
-                addListLabel.style.display = 'block';
-                addListInput.style.display = 'none';
+
+        addList.onclick = function(e) {
+            addListLabel.style.display = 'none';
+            addListInput.style.display = 'block';
+            addListInput.focus();
+
+            document.body.onclick = function(e) {
+                if (!addList.contains(e.target)) {
+                    addListLabel.style.display = 'block';
+                    addListInput.style.display = 'none';
+                }
             }
-        });
+        }
 
         addListInput.addEventListener('keyup', function(e) {
-            if (e.key == 'Enter') {
+            if (e.key == 'Enter' && addListInput.value) {
                 
                 app.addList(addListInput.value);
                 addListLabel.style.display = 'block';

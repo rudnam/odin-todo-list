@@ -37,7 +37,7 @@ export const app = (() => {
     }
 
     const updateContent = () => {
-        localStorage.setItem('lists', JSON.stringify(lists));
+        storages.storeData([...lists]);
     }
 
     return {addList,

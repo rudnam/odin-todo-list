@@ -1,5 +1,5 @@
 # Todos
-- [] Delete task
+- [x] Delete task
 - [] Edit task
 - [] Delete list
 - [] Task dates
