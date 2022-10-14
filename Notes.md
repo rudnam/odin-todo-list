@@ -2,11 +2,11 @@
 - [x] Delete task
 - [x] Edit task
 - [x] Delete list
-- [] Task dates
-- [] Sort by date / custom
-- [] Set color
+- [ ] Task dates
+- [ ] Sort by date / custom
+- [ ] Set color
 - [x] Complete task
-- [] Show completed tasks
+- [ ] Show completed tasks
 
 ## Code template
 - create elements
