@@ -12,20 +12,19 @@ export const storages = (() => {
         }
 
         const data = JSON.parse(localStorage.getItem('listdata'));
-        console.log(JSON.parse(localStorage.getItem('listdata')));
-
         const lists = [];
 
         data.forEach(function(list) {
-            const newList = new List(list._name);
+            const newList = new List(list.name);
 
             list.items.forEach(function(task) {
-                const newTodo = new ToDo(task._title,task._description,newList.id);
+                const newTodo = new ToDo(task.title,task.description,newList.id);
                 newList.addItem(newTodo);
             })
 
             lists.push(newList);
         });
+        
         return lists;
     };
 

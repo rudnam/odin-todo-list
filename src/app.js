@@ -10,10 +10,12 @@ export const app = (() => {
     const addList = (name) => {
         const newList = new List(name);
         lists.push(newList);
+        return;
     }
 
     const deleteList = (list) => {
         lists = lists.filter((i) => i.id != list.id);
+        return;
     }
 
     const addTodo = (title, description, listId) => {
@@ -21,6 +23,7 @@ export const app = (() => {
         lists.forEach(function(list) {
             if (list.id == listId) {
                 list.addItem(newTodo);
+                return;
             }
         })
     }
@@ -29,6 +32,7 @@ export const app = (() => {
         lists.forEach(function(list) {
             if (list.id == todo.parentid) {
                 list.items = list.items.filter((i) => i.id != todo.id);
+                return;
             }
         })
     }
@@ -44,6 +48,7 @@ export const app = (() => {
 
     const getContent = () => {
         updateContent();
+        // temp
         console.log([...lists]);
         return [...lists];
     }
