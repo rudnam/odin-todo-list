@@ -187,12 +187,6 @@ header {
     cursor: pointer;
 }
 
-/* doesnt work */
-.todo:focus:not(:hover) {
-    cursor: inherit;
-    background-color: #1f2028;
-}
-
 
 footer {
     text-align: center;
