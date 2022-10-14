@@ -13,7 +13,7 @@ export const app = (() => {
     }
 
     const addTodo = (title, description, listId) => {
-        const newTodo = new ToDo(title, description);
+        const newTodo = new ToDo(title, description, listId);
         lists.forEach(function(list) {
             if (list.id == listId) {
                 list.addItem(newTodo);
@@ -21,8 +21,13 @@ export const app = (() => {
         })
     }
 
-    const removeTodo = (id) => {
-        // implement
+    const removeTodo = (todo) => {
+        lists.forEach(function(list) {
+            if (list.id == todo.parentid) {
+                list.items = list.items.filter((item) => item.id != todo.id);
+            }
+        })
+
     }
 
     const getContent = () => {
@@ -37,5 +42,6 @@ export const app = (() => {
 
     return {addList,
             addTodo,
+            removeTodo,
             getContent,}
 })();

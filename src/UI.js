@@ -46,6 +46,12 @@ const DOM = (() => {
             todoMark.src = checkOutline;
         }
         todoClose.src = close;
+
+        todoClose.addEventListener('click', function () {
+            app.removeTodo(task);
+            update();
+        })
+
         todo.onmouseover = function() {
             todoClose.style.visibility = 'visible';
         }
