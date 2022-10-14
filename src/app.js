@@ -12,6 +12,10 @@ export const app = (() => {
         lists.push(newList);
     }
 
+    const deleteList = (list) => {
+        lists = lists.filter((i) => i.id != list.id);
+    }
+
     const addTodo = (title, description, listId) => {
         const newTodo = new ToDo(title, description, listId);
         lists.forEach(function(list) {
@@ -21,13 +25,21 @@ export const app = (() => {
         })
     }
 
-    const removeTodo = (todo) => {
+    const deleteTodo = (todo) => {
         lists.forEach(function(list) {
             if (list.id == todo.parentid) {
-                list.items = list.items.filter((item) => item.id != todo.id);
+                list.items = list.items.filter((i) => i.id != todo.id);
             }
         })
+    }
 
+    const completeTodo = (todo) => {
+        lists.forEach(function(list) {
+            if (list.id == todo.parentid) {
+                list.completeItem(todo);
+                return;
+            }
+        })
     }
 
     const getContent = () => {
@@ -41,7 +53,9 @@ export const app = (() => {
     }
 
     return {addList,
+            deleteList,
             addTodo,
-            removeTodo,
+            deleteTodo,
+            completeTodo,
             getContent,}
 })();

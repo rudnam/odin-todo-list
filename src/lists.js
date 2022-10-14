@@ -5,6 +5,7 @@ export default class List {
         this.name = name;
         this.items = [];
         this.id = "id" + Math.random().toString(16).slice(2);
+        this.completed = [];
     }
     getItems() {
         return [...this.items]
@@ -17,5 +18,13 @@ export default class List {
     }
     get name() {
         return this._name;
+    }
+    completeItem(item) {
+        this.items = this.items.filter((i) => i.id != item.id);
+        this.completed.push(item);
+    }
+    recoverItem(item) {
+        this.completed = this.completed.filter((i) => i.id != item.id);
+        this.items.push(item);
     }
 }

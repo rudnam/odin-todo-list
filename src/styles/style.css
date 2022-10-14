@@ -73,6 +73,7 @@ header {
     align-items: flex-start;
     gap: 15px;
     overflow-x: auto;
+    min-height: 200px;
 }
 
 #add-list:hover {
@@ -116,6 +117,48 @@ header {
 
 .list *:focus {
     outline: none;
+}
+
+.anchor {
+    position: relative;
+    display: none;
+}
+
+.popover {
+    border-radius: 5px;
+    width: 100px;
+    padding: 10px;
+    position: absolute;
+    left: 25px;
+    background-color: var(--grey);
+    display: flex;
+    flex-direction: column;
+}
+
+.popover-label {
+    font-size: 0.8rem;
+    padding: 5px;
+}
+
+.popover-sort {
+    display: flex;
+    flex-direction: column;
+}
+
+.popover-sort li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.popover-options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.popover-options li {
+    cursor: pointer;
+    padding: 5px;
 }
 
 .todo {

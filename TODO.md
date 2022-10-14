@@ -1,7 +1,9 @@
 # Todos
 - [x] Delete task
-- [] Edit task
-- [] Delete list
+- [x] Edit task
+- [x] Delete list
 - [] Task dates
 - [] Sort by date / custom
 - [] Set color
+- [x] Complete task
+- [] Show completed tasks

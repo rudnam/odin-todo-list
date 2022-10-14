@@ -48,11 +48,16 @@ const DOM = (() => {
             todoMark.src = checkOutline;
         }
         
-        todoClose.addEventListener('click', function () {
-            app.removeTodo(task);
+        todoMark.onclick = function() {
+            app.completeTodo(task);
             update();
-        })
+        }
 
+        todoClose.onclick = function() {
+            app.deleteTodo(task);
+            update();
+        }
+        
         todo.onmouseover = function() {
             todoClose.style.visibility = 'visible';
         }
@@ -175,6 +180,7 @@ const DOM = (() => {
         const divListTitle = document.createElement('p');
         const divListOptions = document.createElement('img');
         const divListItems = document.createElement('ul');
+        const popover = createPopover(list);
 
 
         divListOptions.classList.add('list-options');
@@ -186,8 +192,20 @@ const DOM = (() => {
         divListHeader.classList.add('list-header');
         divListHeader.appendChild(divListTitle);
         divListHeader.appendChild(divListOptions);
+        divListHeader.appendChild(popover);
         divList.appendChild(divListHeader);
         divList.appendChild(divListItems);
+
+        divListOptions.onclick = function(e) {
+            popover.style.display = 'block';
+
+            document.body.onclick = function(e) {
+                if (!divListOptions.contains(e.target)) {
+                    popover.style.display = 'none';
+                }
+            }
+        }
+
         list.getItems().forEach(function(todo) {
             divListItems.appendChild(createTodo(todo));
         })
@@ -242,6 +260,45 @@ const DOM = (() => {
         })
 
         return addList;
+    }
+
+    const createPopover = (list) => {
+        const anchor = document.createElement('div');
+        const popover = document.createElement('div');
+        const popoverLabel = document.createElement('p');
+        const popoverSort = document.createElement('ul');
+        const popoverDate = document.createElement('li');
+        const popoverCustom = document.createElement('li');
+        const popoverOptions = document.createElement('ul');
+        const popoverDelete = document.createElement('li');
+        const popoverSetcolor = document.createElement('li');
+
+        popover.classList.add('popover');
+        popoverLabel.innerText = 'Sort by:'
+        popoverLabel.classList.add('popover-label');
+        anchor.classList.add('anchor');
+        popoverSort.classList.add('popover-sort');
+        popoverOptions.classList.add('popover-options');
+        popoverDate.innerText = 'Date';
+        popoverCustom.innerText = 'Custom';
+        popoverDelete.innerText = 'Delete list';
+        popoverSetcolor.innerText = 'Set color';
+
+        popoverDelete.onclick = function(e) {
+            app.deleteList(list);
+            update();
+        }
+
+        anchor.appendChild(popover);
+        popover.appendChild(popoverLabel);
+        popover.appendChild(popoverSort);
+        popoverSort.appendChild(popoverDate);
+        popoverSort.appendChild(popoverCustom);
+        popover.appendChild(popoverOptions);
+        popoverOptions.appendChild(popoverDelete);
+        popoverOptions.appendChild(popoverSetcolor);
+
+        return anchor;
     }
 
     const update = () => {
