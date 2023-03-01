@@ -15,6 +15,19 @@
     padding: 0;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+ul {
+    list-style-type: none;
+}
+
 :root {
     --white: #fff;
     --black: #1f2028;
@@ -51,10 +64,6 @@ header {
     border: 1px solid var(--grey);
 }
 
-.header {
-    margin: auto;
-}
-
 #content {
     padding: 20px 50px;
     min-height: 100%;
@@ -73,6 +82,7 @@ header {
     align-items: flex-start;
     gap: 15px;
     overflow-x: auto;
+    min-height: 200px;
 }
 
 #add-list:hover {
@@ -84,18 +94,13 @@ header {
     text-align: center;
 }
 
-#add-list-input, .add-todo-input {
+#add-list-input {
     padding: inherit;
     color: inherit;
     font-family: inherit;
     font-size: 1rem;
     background: none;
     border: none;
-}
-
-#add-list-input:focus, .add-todo-input:focus {
-    border: none;
-    outline: none;
 }
 
 .list {
@@ -114,8 +119,58 @@ header {
     padding: 10px;
 }
 
-.list *:focus {
+.list-options {
+    margin: auto;
+    margin-right: 0px;
+    cursor: pointer;
+    height: 100%;
+    aspect-ratio: 1 / 1;
+}
+
+.list * {
     outline: none;
+}
+
+.anchor {
+    position: relative;
+    display: none;
+}
+
+.popover {
+    border-radius: 5px;
+    width: 100px;
+    padding: 10px;
+    position: absolute;
+    left: 25px;
+    background-color: var(--grey);
+    display: flex;
+    flex-direction: column;
+}
+
+.popover-label {
+    font-size: 0.8rem;
+    padding: 5px;
+}
+
+.popover-sort {
+    display: flex;
+    flex-direction: column;
+}
+
+.popover-sort li {
+    cursor: pointer;
+    padding: 5px;
+}
+
+.popover-options {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.popover-options li {
+    cursor: pointer;
+    padding: 5px;
 }
 
 .todo {
@@ -133,32 +188,68 @@ header {
 .todo-desc {
     font-size: 0.8rem;
     color: var(--light-sub);
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+.hide-overflow {
     overflow-wrap: anywhere;
     text-overflow: ellipsis;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
 
-.todo-mark, .todo-close, .list-options, .add-todo-mark {
+.todo-edit-body {
+    width: calc(100% - 60px);
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    gap: 5px;
+}
+
+.todo-edit-title {
+    margin: none;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+    background: none;
+    border: none;
+}
+
+.todo-edit-desc {
+    color: var(--light);
+    font-family: inherit;
+    font-size: 0.8rem;
+    background: none;
+    border: none;
+    height: 80px;
+    outline: none;
+    box-shadow: none;
+    resize: none;
+}
+
+.todo-mark, .todo-close, .add-todo-mark {
     margin: auto 0;
     height: 100%;
     aspect-ratio: 1 / 1;
 }
 
-.list-options {
-    margin-left: auto;
-    cursor: pointer;
-}
-
 .todo-close {
     margin-left: auto;
+    visibility: hidden;
 }
 
 .add-todo {
     padding: 10px 10px 10px 7.5px;
     display: flex;
+    border-radius: 5px;
+}
+
+.add-todo:hover:not(:focus) {
+    background-color: var(--grey);
+    cursor: pointer;
 }
 
 .add-todo-label {
@@ -166,9 +257,18 @@ header {
 }
 
 .add-todo-form {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 10px;
+}
+
+.add-todo-input {
+    padding: inherit;
+    color: inherit;
+    font-family: inherit;
+    font-size: 1rem;
+    background: none;
+    border: none;
 }
 
 .add-todo-area {
@@ -187,28 +287,13 @@ header {
     cursor: pointer;
 }
 
-/* doesnt work */
-.todo:focus:not(:hover) {
-    cursor: inherit;
-    background-color: #1f2028;
-}
-
-
 footer {
     text-align: center;
     margin-top: auto;
     padding: 10px;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-ul {
-    list-style-type: none;
+.popover li:hover {
+    color: var(--white);
+    cursor: pointer;
 }

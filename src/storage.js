@@ -7,27 +7,33 @@ export const storages = (() => {
 
     const getData = () => {
         
-        if (localStorage.getItem('lists') == null) {
+        if (localStorage.getItem('listdata') == null) {
             return null;
         }
 
-        const data = JSON.parse(localStorage.getItem('lists'));
-        console.log(JSON.parse(localStorage.getItem('lists')));
-
+        const data = JSON.parse(localStorage.getItem('listdata'));
         const lists = [];
 
         data.forEach(function(list) {
-            const newList = new List(list._name);
+            const newList = new List(list.name);
 
             list.items.forEach(function(task) {
-                const newTodo = new ToDo(task._title,task._description);
+                const newTodo = new ToDo(task.title,task.description,newList.id,task.dueDate);
                 newList.addItem(newTodo);
             })
 
             lists.push(newList);
         });
+        
         return lists;
+    };
+
+    const storeData = (lists) => {
+        localStorage.setItem('listdata', JSON.stringify(lists));
+        return;
     }
 
-    return {getData};
+
+    return {getData,
+            storeData,};
 })();

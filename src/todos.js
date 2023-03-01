@@ -1,21 +1,16 @@
 // todos.js
 
 export default class ToDo {
-    constructor(title,description) {
+    constructor(title,description,parentid,dueDate) {
         this.title = title;
         this.description = description;
         this.id = "id" + Math.random().toString(16).slice(2);
+        this.parentid = parentid;
+        this.priority = -1;
+        this.dueDate = dueDate;
     }
-    get title() {
-        return this._title;
-    }
-    set title(value) {
-        this._title = value;
-    }
-    get description() {
-        return this._description;
-    }
-    set description(value) {
-        this._description = value;
+
+    updatePrio(newPrio) {
+        this.priority = newPrio;
     }
 }
