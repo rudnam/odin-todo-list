@@ -119,9 +119,11 @@ const DOM = (() => {
         const todoBody = document.createElement('div');
         const todoTitle = document.createElement('p');
         const todoDesc = document.createElement('p');
+        const todoDate = document.createElement('p');
         const todoEditBody = document.createElement('div');
         const todoEditTitle = document.createElement('input');
         const todoEditDesc = document.createElement('textarea');
+        const todoEditDate = document.createElement('input');
         const todoClose = document.createElement('img');
 
         todo.classList.add('todo');
@@ -130,17 +132,21 @@ const DOM = (() => {
         todoTitle.classList.add('todo-title');
         todoDesc.classList.add('todo-desc');
         todoDesc.classList.add('hide-overflow');
+        todoDate.classList.add('todo-date');
         todoEditBody.classList.add('todo-edit-body');
         todoEditTitle.classList.add('todo-edit-title');
         todoEditDesc.classList.add('todo-edit-desc');
+        todoEditDate.classList.add('todo-edit-date');
         todoClose.classList.add('todo-close');
         todoMark.src = checkOutline;
         todoTitle.innerText = task.title;
         todoDesc.innerText = task.description;
+        todoDate.innerHTML = task.dueDate ? `Due: <i>${task.dueDate}</i>` : '';
         todoEditTitle.placeholder = 'Title';
         todoEditTitle.value = task.title;
         todoEditDesc.placeholder = 'description';
         todoEditDesc.value = task.description;
+        todoEditDate.value = task.dueDate;
         todoClose.src = close;
         
         todoMark.onmouseover = function() {
@@ -185,8 +191,10 @@ const DOM = (() => {
         todo.appendChild(todoClose);
         todoBody.appendChild(todoTitle);
         todoBody.appendChild(todoDesc);
+        todoBody.appendChild(todoDate);
         todoEditBody.appendChild(todoEditTitle);
         todoEditBody.appendChild(todoEditDesc);
+        todoEditBody.appendChild(todoEditDate);
         
         return todo;
     }
@@ -197,6 +205,7 @@ const DOM = (() => {
         const addTodoForm = document.createElement('div');
         const addTodoInput = document.createElement('input');
         const addTodoArea = document.createElement('textarea');
+        const addTodoDate = document.createElement('input');
         const addTodoMark = document.createElement('img');
 
         addTodo.classList.add('add-todo');
@@ -205,6 +214,8 @@ const DOM = (() => {
         addTodoForm.classList.add('add-todo-form');
         addTodoInput.classList.add('add-todo-input');
         addTodoArea.classList.add('add-todo-area');
+        addTodoDate.classList.add('add-todo-date')
+        addTodoDate.type = "date";
         addTodoMark.src = add;
         addTodoLabel.innerText = "Add a task";
         addTodoInput.placeholder = "Title";
@@ -225,12 +236,13 @@ const DOM = (() => {
 
         addTodo.onkeyup = function(e) {
             if (e.key == 'Enter' && addTodoInput.value) {
-                app.addTodo(addTodoInput.value,addTodoArea.value,listid);
+                app.addTodo(addTodoInput.value,addTodoArea.value,listid,addTodoDate.value);
                 addTodoLabel.style.display = 'block';
                 addTodoMark.style.display = 'block';
                 addTodoForm.style.display = 'none';
                 addTodoInput.value = '';
                 addTodoArea.value = '';
+                addTodoDate.value = '';
                 update();
             }
         }
@@ -240,6 +252,7 @@ const DOM = (() => {
         addTodo.appendChild(addTodoForm);
         addTodoForm.appendChild(addTodoInput);
         addTodoForm.appendChild(addTodoArea);
+        addTodoForm.appendChild(addTodoDate);
 
         return addTodo;
     }

@@ -18,7 +18,7 @@ export const storages = (() => {
             const newList = new List(list.name);
 
             list.items.forEach(function(task) {
-                const newTodo = new ToDo(task.title,task.description,newList.id);
+                const newTodo = new ToDo(task.title,task.description,newList.id,task.dueDate);
                 newList.addItem(newTodo);
             })
 

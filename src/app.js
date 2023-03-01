@@ -18,8 +18,8 @@ export const app = (() => {
         return;
     }
 
-    const addTodo = (title, description, listId) => {
-        const newTodo = new ToDo(title, description, listId);
+    const addTodo = (title, description, listId, dueDate) => {
+        const newTodo = new ToDo(title, description, listId, dueDate);
         lists.forEach(function(list) {
             if (list.id == listId) {
                 list.addItem(newTodo);

@@ -120,7 +120,8 @@ header {
 }
 
 .list-options {
-    margin-left: auto;
+    margin: auto;
+    margin-right: 0px;
     cursor: pointer;
     height: 100%;
     aspect-ratio: 1 / 1;
@@ -290,4 +291,9 @@ footer {
     text-align: center;
     margin-top: auto;
     padding: 10px;
+}
+
+.popover li:hover {
+    color: var(--white);
+    cursor: pointer;
 }

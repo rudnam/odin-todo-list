@@ -13,3 +13,9 @@
 - set attributes (classes first)
 - functions
 - appends
+
+## Command
+- `npm run watch`
+
+## Note
+- 
