@@ -146,6 +146,7 @@ const DOM = (() => {
         todoEditTitle.value = task.title;
         todoEditDesc.placeholder = 'description';
         todoEditDesc.value = task.description;
+        todoEditDate.type = 'date';
         todoEditDate.value = task.dueDate;
         todoClose.src = close;
         
@@ -176,8 +177,7 @@ const DOM = (() => {
             todoEditBody.style.display = 'flex';
             document.body.onclick = function(e) {
                 if (!todo.contains(e.target)) {
-                    task.title = todoEditTitle.value;
-                    task.description = todoEditDesc.value;
+                    app.updateTodo(task,todoEditTitle.value,todoEditDesc.value,todoEditDate.value);
                     todoBody.style.display = 'flex';
                     todoEditBody.style.display = 'none';
                     update();
@@ -263,7 +263,7 @@ const DOM = (() => {
         const popoverLabel = document.createElement('p');
         const popoverSort = document.createElement('ul');
         const popoverDate = document.createElement('li');
-        const popoverCustom = document.createElement('li');
+        const popoverPriority = document.createElement('li');
         const popoverOptions = document.createElement('ul');
         const popoverDelete = document.createElement('li');
         const popoverSetcolor = document.createElement('li');
@@ -275,7 +275,7 @@ const DOM = (() => {
         popoverOptions.classList.add('popover-options');
         popoverLabel.innerText = 'Sort by:'
         popoverDate.innerText = 'Date';
-        popoverCustom.innerText = 'Custom';
+        popoverPriority.innerText = 'Priority';
         popoverDelete.innerText = 'Delete list';
         popoverSetcolor.innerText = 'Set color';
 
@@ -284,12 +284,22 @@ const DOM = (() => {
             update();
         }
 
+        popoverDate.onclick = function(e) {
+            app.sortList(list,1);
+            update();
+        }
+
+        popoverPriority.onclick = function(e) {
+            app.sortList(list,2);
+            update();
+        }
+
         anchor.appendChild(popover);
         popover.appendChild(popoverLabel);
         popover.appendChild(popoverSort);
         popover.appendChild(popoverOptions);
         popoverSort.appendChild(popoverDate);
-        popoverSort.appendChild(popoverCustom);
+        popoverSort.appendChild(popoverPriority);
         popoverOptions.appendChild(popoverDelete);
         popoverOptions.appendChild(popoverSetcolor);
 

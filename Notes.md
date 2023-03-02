@@ -16,6 +16,3 @@
 
 ## Command
 - `npm run watch`
-
-## Note
-- test

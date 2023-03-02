@@ -6,6 +6,7 @@ export default class List {
         this.items = [];
         this.id = "id" + Math.random().toString(16).slice(2);
         this.completed = [];
+        this.sortType = 1;
     }
 
     addItem(item) {

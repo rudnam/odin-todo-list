@@ -24,8 +24,8 @@ export const storages = (() => {
 
             lists.push(newList);
         });
-        
-        return lists;
+
+        return [lists];
     };
 
     const storeData = (lists) => {
