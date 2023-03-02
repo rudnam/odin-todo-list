@@ -5,3 +5,7 @@ Project from [TOP](https://www.theodinproject.com/lessons/node-path-javascript-t
 - OOP Principles
 - More webpack practice
 - Use of localStorage
+
+## Notes
+- `npm install webpack`
+- `npm run watch`
