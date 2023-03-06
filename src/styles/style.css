@@ -117,6 +117,11 @@ header {
 .list-title {
     font-size: 1.1rem;
     padding: 10px;
+    margin: none;
+    color: inherit;
+    font-family: inherit;
+    background: none;
+    border: none;
 }
 
 .list-options {

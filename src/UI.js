@@ -72,7 +72,7 @@ const DOM = (() => {
     const createList = (list) => {
         const divList = document.createElement('div');
         const divListHeader = document.createElement('div');
-        const divListTitle = document.createElement('p');
+        const divListTitle = document.createElement('input');
         const divListOptions = document.createElement('img');
         const divListItems = document.createElement('ul');
         const popover = createPopover(list);
@@ -82,12 +82,12 @@ const DOM = (() => {
         divListTitle.classList.add('list-title');
         divListOptions.classList.add('list-options');
         divListItems.classList.add('list-items');
-        divListTitle.innerText = list.name;
-        divListTitle.contentEditable = 'true';
+        divListTitle.value = list.name;
+        divListTitle.placeholder = 'Untitled';
         divListOptions.src = more;
         
         divListTitle.addEventListener('focusout', function() {
-            list.name = divListTitle.innerText;
+            list.name = divListTitle.value;
             update();
         })
 
