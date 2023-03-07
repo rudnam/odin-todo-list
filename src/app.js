@@ -32,12 +32,12 @@ const app = (() => {
             break;
 
         case 2:
-        // sort by priority
+        // sort by priority (greater is higher)
             list.items.sort((a, b) => {
-                if (Number(a.priority) < Number(b.priority)) {
+                if (Number(a.priority) > Number(b.priority)) {
                     return -1;
                 }
-                if (Number(a.priority) > Number(b.priority)) {
+                if (Number(a.priority) < Number(b.priority)) {
                     return 1;
                 }
                 return 0;
