@@ -178,6 +178,14 @@ header {
   padding: 5px;
 }
 
+.popover-delete {
+  color: var(--red);
+}
+
+.popover-delete:hover {
+  color: red !important;
+}
+
 .todo {
   padding: 10px;
   border-radius: 5px;

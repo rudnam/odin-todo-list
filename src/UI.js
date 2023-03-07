@@ -401,18 +401,17 @@ const DOM = (() => {
         const popoverPriority = document.createElement('li');
         const popoverOptions = document.createElement('ul');
         const popoverDelete = document.createElement('li');
-        const popoverSetcolor = document.createElement('li');
 
         anchor.classList.add('anchor');
         popover.classList.add('popover');
         popoverLabel.classList.add('popover-label');
         popoverSort.classList.add('popover-sort');
         popoverOptions.classList.add('popover-options');
+        popoverDelete.classList.add('popover-delete');
         popoverLabel.innerText = 'Sort by:';
         popoverDate.innerText = 'Date';
         popoverPriority.innerText = 'Priority';
         popoverDelete.innerText = 'Delete list';
-        popoverSetcolor.innerText = 'Set color';
 
         switch (list.sortType) {
         case 1:
@@ -447,7 +446,6 @@ const DOM = (() => {
         popoverSort.appendChild(popoverDate);
         popoverSort.appendChild(popoverPriority);
         popoverOptions.appendChild(popoverDelete);
-        popoverOptions.appendChild(popoverSetcolor);
 
         return anchor;
     };
