@@ -117,8 +117,8 @@ const app = (() => {
 
     const getContent = () => {
         updateContent();
-        // temp
-        console.log([...lists]);
+        // // for debugging
+        // console.log([...lists]);
         return [...lists];
     };
 

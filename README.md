@@ -10,6 +10,10 @@ Project from [TOP](https://www.theodinproject.com/lessons/node-path-javascript-t
 - More webpack practice
 - Use of localStorage
 
+## Screenshot
+
+![Site screenshot](https://i.imgur.com/h27t57E.png)
+
 ## Dev
 
 - `npm install`
