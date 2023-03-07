@@ -1,15 +1,15 @@
 // storage.js
 
-import List from "./lists";
-import ToDo from "./todos";
+import List from './lists';
+import ToDo from './todos';
 
 const storage = (() => {
     const getData = () => {
-        if (localStorage.getItem("listdata") == null) {
+        if (localStorage.getItem('listdata') == null) {
             return null;
         }
 
-        const data = JSON.parse(localStorage.getItem("listdata"));
+        const data = JSON.parse(localStorage.getItem('listdata'));
         const lists = [];
 
         data.forEach((list) => {
@@ -32,7 +32,7 @@ const storage = (() => {
     };
 
     const storeData = (lists) => {
-        localStorage.setItem("listdata", JSON.stringify(lists));
+        localStorage.setItem('listdata', JSON.stringify(lists));
     
     };
 

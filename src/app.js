@@ -1,8 +1,8 @@
 // app.js
 
-import List from "./lists";
-import ToDo from "./todos";
-import storage from "./storage";
+import List from './lists';
+import ToDo from './todos';
+import storage from './storage';
 
 const app = (() => {
     let lists = storage.getData();
