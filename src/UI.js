@@ -147,6 +147,7 @@ const DOM = (() => {
         const todoEditDate = document.createElement('div');
         const todoEditDateLabel = document.createElement('p');
         const todoEditDateInput = document.createElement('input');
+        const todoEditDateReset = document.createElement('img');
         const todoEditPriority = document.createElement('div');
         const todoEditPriorityLabel = document.createElement('p');
         const todoEditPriorityInput = document.createElement('input');
@@ -169,6 +170,7 @@ const DOM = (() => {
         todoEditDate.classList.add('todo-edit-date');
         todoEditDateLabel.classList.add('todo-edit-date-label');
         todoEditDateInput.classList.add('todo-edit-date-input');
+        todoEditDateReset.classList.add('todo-edit-date-reset');
         todoEditPriority.classList.add('todo-edit-priority');
         todoEditPriorityLabel.classList.add('todo-edit-priority-label');
         todoEditPriorityInput.classList.add('todo-edit-priority-input');
@@ -191,6 +193,8 @@ const DOM = (() => {
         todoEditDateLabel.innerText = 'Date: ';
         todoEditDateInput.type = 'date';
         todoEditDateInput.value = task.dueDate;
+        todoEditDateReset.src = reset
+        todoEditDateReset.style.display = task.dueDate === '' ? 'none' : 'block';
         todoEditPriorityLabel.innerText = 'Priority: ';
         todoEditPriorityInput.type = 'number';
         todoEditPriorityInput.value = task.priority || 0;
@@ -220,6 +224,17 @@ const DOM = (() => {
             }
             todoEditTitle.style.color = todoEditColorInput.value;
         }
+
+        todoEditDateReset.onmouseover = () => {
+            todoEditDateReset.src = resetWhite;
+        };
+        todoEditDateReset.onmouseout = () => {
+            todoEditDateReset.src = reset;
+        };
+        todoEditDateReset.onclick = () => {
+            todoEditDateInput.value = '';
+            todoEditDateReset.style.display = 'none';
+        };
 
         todoEditColorReset.onmouseover = () => {
             todoEditColorReset.src = resetWhite;
@@ -286,6 +301,7 @@ const DOM = (() => {
         todoEditBody.appendChild(todoEditColor);
         todoEditDate.appendChild(todoEditDateLabel);
         todoEditDate.appendChild(todoEditDateInput);
+        todoEditDate.appendChild(todoEditDateReset);
         todoEditPriority.appendChild(todoEditPriorityLabel);
         todoEditPriority.appendChild(todoEditPriorityInput);
         todoEditColor.appendChild(todoEditColorLabel);
