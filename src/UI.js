@@ -138,7 +138,7 @@ const DOM = (() => {
         const todo = document.createElement('div');
         const todoMark = document.createElement('img');
         const todoBody = document.createElement('div');
-        const todoTitle = document.createElement('p');
+        const todoTitle = document.createElement('input');
         const todoDesc = document.createElement('p');
         const todoDate = document.createElement('p');
         const todoEditBody = document.createElement('div');
@@ -178,11 +178,12 @@ const DOM = (() => {
         todoEditColorReset.classList.add('todo-edit-color-reset');
         todoClose.classList.add('todo-close');
         todoMark.src = checkOutline;
-        todoTitle.innerText = task.title;
+        todoTitle.value = task.title;
+        todoTitle.placeholder = 'Untitled';
         todoTitle.style.color = task.color;
         todoDesc.innerText = task.description;
         todoDate.innerHTML = task.dueDate ? `Due: <i>${task.dueDate}</i>` : '';
-        todoEditTitle.placeholder = 'Title';
+        todoEditTitle.placeholder = 'Untitled';
         todoEditTitle.value = task.title;
         todoEditTitle.style.color = task.color;
         todoEditDesc.placeholder = 'description';
