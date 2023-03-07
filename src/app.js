@@ -56,8 +56,8 @@ const app = (() => {
     
     };
 
-    const addTodo = (title, description, listId, dueDate, priority) => {
-        const newTodo = new ToDo(title, description, listId, dueDate, priority);
+    const addTodo = (title, description, listId, dueDate, priority, color) => {
+        const newTodo = new ToDo(title, description, listId, dueDate, priority, color);
         lists.forEach((list) => {
             if (list.id === listId) {
                 list.addItem(newTodo);
@@ -72,13 +72,15 @@ const app = (() => {
         title = task.title,
         description = task.description,
         dueDate = task.dueDate,
-        priority = task.priority
+        priority = task.priority,
+        color = task.color
     ) => {
         const taskObj = task;
         taskObj.title = title;
         taskObj.description = description;
         taskObj.dueDate = dueDate;
         taskObj.priority = priority;
+        taskObj.color = color;
         lists.forEach((list) => {
             if (list.id === task.parentid) {
                 sortList(list);

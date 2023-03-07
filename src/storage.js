@@ -21,7 +21,8 @@ const storage = (() => {
                     task.description,
                     newList.id,
                     task.dueDate,
-                    task.priority
+                    task.priority,
+                    task.color
                 );
                 newList.addItem(newTodo);
             });

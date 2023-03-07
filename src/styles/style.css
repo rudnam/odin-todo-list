@@ -237,7 +237,8 @@ header {
 
 .todo-mark,
 .todo-close,
-.add-todo-mark {
+.add-todo-mark,
+.todo-edit-color-reset {
   margin: auto 0;
   height: 100%;
   aspect-ratio: 1 / 1;
@@ -261,6 +262,20 @@ header {
 
 .todo-edit-priority-input {
   width: 50px; 
+}
+
+.todo-edit-color {
+  font-size: 16px;
+  display: flex;
+  gap: 5px;
+}
+
+.todo-edit-color-input {
+  height: 1.3rem;
+}
+
+.todo-edit-color-reset:hover {
+  src: local('./images/reset_white.svg');
 }
 
 .todo-close {
@@ -327,6 +342,16 @@ header {
 
 .add-todo-priority-input {
   width: 50px;
+}
+
+.add-todo-color {
+  font-size: 16px;
+  display: flex;
+  gap: 5px;
+}
+
+.add-todo-color-input {
+  height: 1.3rem;
 }
 
 .todo:hover:not(:focus) {

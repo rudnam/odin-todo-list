@@ -5,8 +5,11 @@ import app from './app';
 import checkOutline from './images/check_outline.svg';
 import check from './images/check.svg';
 import close from './images/close.svg';
+import closeWhite from './images/close_white.svg'
 import more from './images/more.svg';
 import add from './images/add.svg';
+import reset from './images/reset.svg'
+import resetWhite from './images/reset_white.svg'
 
 const DOM = (() => {
 
@@ -147,6 +150,10 @@ const DOM = (() => {
         const todoEditPriority = document.createElement('div');
         const todoEditPriorityLabel = document.createElement('p');
         const todoEditPriorityInput = document.createElement('input');
+        const todoEditColor = document.createElement('div');
+        const todoEditColorLabel = document.createElement('p');
+        const todoEditColorInput = document.createElement('input');
+        const todoEditColorReset = document.createElement('img');
         const todoClose = document.createElement('img');
 
         todo.classList.add('todo');
@@ -165,13 +172,19 @@ const DOM = (() => {
         todoEditPriority.classList.add('todo-edit-priority');
         todoEditPriorityLabel.classList.add('todo-edit-priority-label');
         todoEditPriorityInput.classList.add('todo-edit-priority-input');
+        todoEditColor.classList.add('todo-edit-color');
+        todoEditColorLabel.classList.add('todo-edit-color-label');
+        todoEditColorInput.classList.add('todo-edit-color-input');
+        todoEditColorReset.classList.add('todo-edit-color-reset');
         todoClose.classList.add('todo-close');
         todoMark.src = checkOutline;
         todoTitle.innerText = task.title;
+        todoTitle.style.color = task.color;
         todoDesc.innerText = task.description;
         todoDate.innerHTML = task.dueDate ? `Due: <i>${task.dueDate}</i>` : '';
         todoEditTitle.placeholder = 'Title';
         todoEditTitle.value = task.title;
+        todoEditTitle.style.color = task.color;
         todoEditDesc.placeholder = 'description';
         todoEditDesc.value = task.description;
         todoEditDateLabel.innerText = 'Date: ';
@@ -179,7 +192,12 @@ const DOM = (() => {
         todoEditDateInput.value = task.dueDate;
         todoEditPriorityLabel.innerText = 'Priority: ';
         todoEditPriorityInput.type = 'number';
-        todoEditPriorityInput.value = task.priority ? task.priority : 0;
+        todoEditPriorityInput.value = task.priority || 0;
+        todoEditColorLabel.innerText = 'Color: ';
+        todoEditColorInput.type = 'color';
+        todoEditColorInput.value = task.color || '#a9adc1';
+        todoEditColorReset.src = reset
+        todoEditColorReset.style.display = task.color === '#a9adc1' ? 'none' : 'block';
         todoClose.src = close;
 
         todoMark.onmouseover = () => {
@@ -193,11 +211,40 @@ const DOM = (() => {
             update();
         };
 
+        todoEditColorInput.onchange = () => {
+            if (todoEditColorInput.value === '#a9adc1') {
+                todoEditColorReset.style.display = 'none';
+            } else {
+                todoEditColorReset.style.display = 'block';
+            }
+            todoEditTitle.style.color = todoEditColorInput.value;
+        }
+
+        todoEditColorReset.onmouseover = () => {
+            todoEditColorReset.src = resetWhite;
+        };
+        todoEditColorReset.onmouseout = () => {
+            todoEditColorReset.src = reset;
+        };
+        todoEditColorReset.onclick = () => {
+            todoEditColorInput.value = '#a9adc1';
+            todoEditTitle.style.color = todoEditColorInput.value;
+            todoEditColorReset.style.display = 'none';
+        };
+
+
         todo.onmouseover = () => {
             todoClose.style.visibility = 'visible';
         };
         todo.onmouseout = () => {
             todoClose.style.visibility = 'hidden';
+        };
+
+        todoClose.onmouseover = () => {
+            todoClose.src = closeWhite;
+        };
+        todoClose.onmouseout = () => {
+            todoClose.src = close;
         };
         todoClose.onclick = () => {
             app.deleteTodo(task);
@@ -214,7 +261,8 @@ const DOM = (() => {
                         todoEditTitle.value,
                         todoEditDesc.value,
                         todoEditDateInput.value,
-                        todoEditPriorityInput.value
+                        todoEditPriorityInput.value,
+                        todoEditColorInput.value
                     );
                     todoBody.style.display = 'flex';
                     todoEditBody.style.display = 'none';
@@ -234,10 +282,14 @@ const DOM = (() => {
         todoEditBody.appendChild(todoEditDesc);
         todoEditBody.appendChild(todoEditDate);
         todoEditBody.appendChild(todoEditPriority);
+        todoEditBody.appendChild(todoEditColor);
         todoEditDate.appendChild(todoEditDateLabel);
         todoEditDate.appendChild(todoEditDateInput);
         todoEditPriority.appendChild(todoEditPriorityLabel);
         todoEditPriority.appendChild(todoEditPriorityInput);
+        todoEditColor.appendChild(todoEditColorLabel);
+        todoEditColor.appendChild(todoEditColorInput);
+        todoEditColor.appendChild(todoEditColorReset);
 
         return todo;
     };
@@ -254,6 +306,9 @@ const DOM = (() => {
         const addTodoPriority = document.createElement('div');
         const addTodoPriorityLabel = document.createElement('p');
         const addTodoPriorityInput = document.createElement('input');
+        const addTodoColor = document.createElement('div');
+        const addTodoColorLabel = document.createElement('p');
+        const addTodoColorInput = document.createElement('input');
         const addTodoMark = document.createElement('img');
 
         addTodo.classList.add('add-todo');
@@ -268,13 +323,19 @@ const DOM = (() => {
         addTodoPriority.classList.add('add-todo-priority');
         addTodoPriorityLabel.classList.add('add-todo-priority-label');
         addTodoPriorityInput.classList.add('add-todo-priority-input');
+        addTodoColor.classList.add('add-todo-color');
+        addTodoColorLabel.classList.add('add-todo-color-label');
+        addTodoColorInput.classList.add('add-todo-color-input');
         addTodoDateInput.type = 'date';
         addTodoMark.src = add;
         addTodoLabel.innerText = 'Add a task';
         addTodoDateLabel.innerText = 'Date: ';
         addTodoPriorityLabel.innerText = 'Priority: ';
         addTodoPriorityInput.type = 'number';
-        addTodoPriorityInput.value = addTodoPriorityInput.value || 0;
+        addTodoPriorityInput.value = 0;
+        addTodoColorLabel.innerText = 'Color: ';
+        addTodoColorInput.type = 'color';
+        addTodoColorInput.value = '#a9adc1';
         addTodoInput.placeholder = 'Title';
         addTodoArea.placeholder = 'description';
 
@@ -298,7 +359,8 @@ const DOM = (() => {
                     addTodoArea.value,
                     listid,
                     addTodoDateInput.value,
-                    addTodoPriorityInput.value
+                    addTodoPriorityInput.value,
+                    addTodoColorInput.value
                 );
                 addTodoLabel.style.display = 'block';
                 addTodoMark.style.display = 'block';
@@ -306,7 +368,8 @@ const DOM = (() => {
                 addTodoInput.value = '';
                 addTodoArea.value = '';
                 addTodoDateInput.value = '';
-                addTodoPriorityInput.value = '';
+                addTodoPriorityInput.value = 0;
+                addTodoColorInput.value = '#a9adc1';
                 update();
             }
         };
@@ -318,10 +381,13 @@ const DOM = (() => {
         addTodoForm.appendChild(addTodoArea);
         addTodoForm.appendChild(addTodoDate);
         addTodoForm.appendChild(addTodoPriority);
+        addTodoForm.appendChild(addTodoColor);
         addTodoDate.appendChild(addTodoDateLabel);
         addTodoDate.appendChild(addTodoDateInput);
         addTodoPriority.appendChild(addTodoPriorityLabel);
         addTodoPriority.appendChild(addTodoPriorityInput);
+        addTodoColor.appendChild(addTodoColorLabel);
+        addTodoColor.appendChild(addTodoColorInput);
 
         return addTodo;
     };
