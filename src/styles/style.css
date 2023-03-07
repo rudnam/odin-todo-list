@@ -260,6 +260,7 @@ header {
 
 .todo-edit-date-input {
   width: 110px;
+  height: 1.1rem;
 }
 
 .todo-edit-priority {
@@ -270,6 +271,8 @@ header {
 
 .todo-edit-priority-input {
   width: 50px; 
+  height: 1.1rem;
+  padding-left: 3px;
 }
 
 .todo-edit-color {
@@ -340,6 +343,12 @@ header {
 
 .add-todo-date-input {
   width: 110px;
+  height: 1.1rem;
+  padding-left: 3px;
+}
+
+::-webkit-datetime-edit {
+  padding-left: 3px;
 }
 
 .add-todo-priority {
@@ -350,6 +359,8 @@ header {
 
 .add-todo-priority-input {
   width: 50px;
+  height: 1.1rem;
+  padding-left: 3px;
 }
 
 .add-todo-color {
