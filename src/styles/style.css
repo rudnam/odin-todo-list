@@ -10,6 +10,11 @@
   font-weight: bold;
 }
 
+@font-face {
+  font-family: 'Hiragino Kaku Gothic Pro';
+  src: url(../fonts/Hiragino-Kaku-Gothic-Pro-W3.otf);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -40,7 +45,7 @@ ul {
   --transparent: #2e303941;
   --default-width: min(800px, 100%);
 
-  font-family: "Matter", sans-serif;
+  font-family: "Matter", 'Hiragino Kaku Gothic Pro', sans-serif;
   font-size: 16px;
   overflow-x: hidden;
 }

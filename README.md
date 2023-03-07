@@ -4,7 +4,7 @@
 
 ## Description
 
-Project from [TOP](https://www.theodinproject.com/lessons/node-path-javascript-todo-list). Based from [Tasksboard](https://tasksboard.com/)
+Project from [TOP](https://www.theodinproject.com/lessons/node-path-javascript-todo-list). Based from [Tasksboard](https://tasksboard.com/). Mobile not yet supported.
 
 - OOP Principles
 - More webpack practice
