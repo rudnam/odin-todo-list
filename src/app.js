@@ -20,6 +20,9 @@ const app = (() => {
         case 1:
         // sort by date
             list.items.sort((a, b) => {
+                if (a.dueDate === '' && b.dueDate) return 1;
+                if (b.dueDate === '' && a.dueDate) return -1;
+
                 if (a.dueDate < b.dueDate) {
                     return -1;
                 }
