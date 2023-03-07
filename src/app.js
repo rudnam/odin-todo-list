@@ -56,8 +56,8 @@ const app = (() => {
     
     };
 
-    const addTodo = (title, description, listId, dueDate) => {
-        const newTodo = new ToDo(title, description, listId, dueDate);
+    const addTodo = (title, description, listId, dueDate, priority) => {
+        const newTodo = new ToDo(title, description, listId, dueDate, priority);
         lists.forEach((list) => {
             if (list.id === listId) {
                 list.addItem(newTodo);

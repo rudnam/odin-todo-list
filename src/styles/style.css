@@ -244,11 +244,9 @@ header {
 }
 
 .todo-edit-date {
+  font-size: 16px;
   display: flex;
-}
-
-.todo-edit-date-label {
-  width: 50px;
+  gap: 5px;
 }
 
 .todo-edit-date-input {
@@ -256,11 +254,9 @@ header {
 }
 
 .todo-edit-priority {
+  font-size: 16px;
   display: flex;
-}
-
-.todo-edit-priority-label {
-  width: 70px;
+  gap: 5px;
 }
 
 .todo-edit-priority-input {
@@ -314,15 +310,23 @@ header {
 }
 
 .add-todo-date {
+  font-size: 16px;
   display: flex;
-}
-
-.add-todo-date-label {
-  width: 50px;
+  gap: 5px;
 }
 
 .add-todo-date-input {
   width: 110px;
+}
+
+.add-todo-priority {
+  font-size: 16px;
+  display: flex;
+  gap: 5px;
+}
+
+.add-todo-priority-input {
+  width: 50px;
 }
 
 .todo:hover:not(:focus) {

@@ -251,6 +251,9 @@ const DOM = (() => {
         const addTodoDate = document.createElement('div');
         const addTodoDateLabel = document.createElement('p');
         const addTodoDateInput = document.createElement('input');
+        const addTodoPriority = document.createElement('div');
+        const addTodoPriorityLabel = document.createElement('p');
+        const addTodoPriorityInput = document.createElement('input');
         const addTodoMark = document.createElement('img');
 
         addTodo.classList.add('add-todo');
@@ -262,10 +265,16 @@ const DOM = (() => {
         addTodoDate.classList.add('add-todo-date');
         addTodoDateLabel.classList.add('add-todo-date-label');
         addTodoDateInput.classList.add('add-todo-date-input');
+        addTodoPriority.classList.add('add-todo-priority');
+        addTodoPriorityLabel.classList.add('add-todo-priority-label');
+        addTodoPriorityInput.classList.add('add-todo-priority-input');
         addTodoDateInput.type = 'date';
         addTodoMark.src = add;
         addTodoLabel.innerText = 'Add a task';
         addTodoDateLabel.innerText = 'Date: ';
+        addTodoPriorityLabel.innerText = 'Priority: ';
+        addTodoPriorityInput.type = 'number';
+        addTodoPriorityInput.value = addTodoPriorityInput.value || 0;
         addTodoInput.placeholder = 'Title';
         addTodoArea.placeholder = 'description';
 
@@ -288,7 +297,8 @@ const DOM = (() => {
                     addTodoInput.value,
                     addTodoArea.value,
                     listid,
-                    addTodoDateInput.value
+                    addTodoDateInput.value,
+                    addTodoPriorityInput.value
                 );
                 addTodoLabel.style.display = 'block';
                 addTodoMark.style.display = 'block';
@@ -296,6 +306,7 @@ const DOM = (() => {
                 addTodoInput.value = '';
                 addTodoArea.value = '';
                 addTodoDateInput.value = '';
+                addTodoPriorityInput.value = '';
                 update();
             }
         };
@@ -306,8 +317,11 @@ const DOM = (() => {
         addTodoForm.appendChild(addTodoInput);
         addTodoForm.appendChild(addTodoArea);
         addTodoForm.appendChild(addTodoDate);
+        addTodoForm.appendChild(addTodoPriority);
         addTodoDate.appendChild(addTodoDateLabel);
         addTodoDate.appendChild(addTodoDateInput);
+        addTodoPriority.appendChild(addTodoPriorityLabel);
+        addTodoPriority.appendChild(addTodoPriorityInput);
 
         return addTodo;
     };
