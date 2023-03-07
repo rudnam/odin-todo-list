@@ -10,7 +10,8 @@ Project from [TOP](https://www.theodinproject.com/lessons/node-path-javascript-t
 - More webpack practice
 - Use of localStorage
 
-## Notes
+## Dev
 
 - `npm install webpack`
 - `npm run watch`
+- Run live server and go to `http://127.0.0.1:5500/dist/`
