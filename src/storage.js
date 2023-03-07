@@ -6,7 +6,7 @@ import ToDo from './todos';
 const storage = (() => {
     const getData = () => {
         if (localStorage.getItem('listdata') == null) {
-            return null;
+            return [];
         }
 
         const data = JSON.parse(localStorage.getItem('listdata'));
