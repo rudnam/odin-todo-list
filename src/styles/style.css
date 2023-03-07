@@ -200,6 +200,7 @@ header {
 .todo-body {
   display: flex;
   flex-direction: column;
+  gap: 3px;
   padding: 10px;
 }
 
@@ -217,6 +218,14 @@ header {
   color: var(--light-sub);
   white-space: normal;
   word-wrap: break-word;
+}
+
+.todo-date {
+  font-size: 14px;
+}
+
+.due-date {
+  text-decoration: none;
 }
 
 .hide-overflow {

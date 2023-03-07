@@ -1,6 +1,9 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-use-before-define */
 // UI.js
 
+import { formatRelative } from 'date-fns'
+import { enGB } from 'date-fns/locale';
 import app from './app';
 import checkOutline from './images/check_outline.svg';
 import check from './images/check.svg';
@@ -184,7 +187,6 @@ const DOM = (() => {
         todoTitle.placeholder = 'Untitled';
         todoTitle.style.color = task.color;
         todoDesc.innerText = task.description;
-        todoDate.innerHTML = task.dueDate ? `Due: <i>${task.dueDate}</i>` : '';
         todoEditTitle.placeholder = 'Untitled';
         todoEditTitle.value = task.title;
         todoEditTitle.style.color = task.color;
@@ -204,6 +206,21 @@ const DOM = (() => {
         todoEditColorReset.src = reset
         todoEditColorReset.style.display = task.color === '#a9adc1' ? 'none' : 'block';
         todoClose.src = close;
+
+        // https://github.com/date-fns/date-fns/issues/1218#issuecomment-599182307
+        const formatRelativeLocale = {
+            lastWeek: "'Last' eeee",
+            yesterday: "'Yesterday'",
+            today: "'Today'",
+            tomorrow: "'Tomorrow'",
+            nextWeek: 'eeee',
+            other: 'MMMM dd, yyyy',
+        };
+        const locale = {
+            ...enGB,
+            formatRelative: (token) => formatRelativeLocale[token],
+        };
+        todoDate.innerHTML = task.dueDate ? `<span class='due-date'>${formatRelative(new Date(task.dueDate), new Date(), { locale })}</span>` : '';
 
         todoMark.onmouseover = () => {
             todoMark.src = check;

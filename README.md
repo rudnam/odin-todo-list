@@ -12,6 +12,6 @@ Project from [TOP](https://www.theodinproject.com/lessons/node-path-javascript-t
 
 ## Dev
 
-- `npm install webpack`
+- `npm install`
 - `npm run watch`
 - Run live server and go to `http://127.0.0.1:5500/dist/`
