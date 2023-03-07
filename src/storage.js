@@ -3,37 +3,40 @@
 import List from "./lists";
 import ToDo from "./todos";
 
-export const storages = (() => {
-
+const storage = (() => {
     const getData = () => {
-        
-        if (localStorage.getItem('listdata') == null) {
+        if (localStorage.getItem("listdata") == null) {
             return null;
         }
 
-        const data = JSON.parse(localStorage.getItem('listdata'));
+        const data = JSON.parse(localStorage.getItem("listdata"));
         const lists = [];
 
-        data.forEach(function(list) {
+        data.forEach((list) => {
             const newList = new List(list.name);
 
-            list.items.forEach(function(task) {
-                const newTodo = new ToDo(task.title,task.description,newList.id,task.dueDate);
+            list.items.forEach((task) => {
+                const newTodo = new ToDo(
+                    task.title,
+                    task.description,
+                    newList.id,
+                    task.dueDate
+                );
                 newList.addItem(newTodo);
-            })
+            });
 
             lists.push(newList);
         });
 
-        return [lists];
+        return lists;
     };
 
     const storeData = (lists) => {
-        localStorage.setItem('listdata', JSON.stringify(lists));
-        return;
-    }
+        localStorage.setItem("listdata", JSON.stringify(lists));
+    
+    };
 
-
-    return {getData,
-            storeData,};
+    return { getData, storeData };
 })();
+
+export default storage;

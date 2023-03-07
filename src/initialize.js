@@ -3,14 +3,14 @@
 import loadUI from "./UI";
 
 function createHeader() {
-    const header = document.createElement('header');
-    const divHeader = document.createElement('div');
-    const headerLogo = document.createElement('a');
+    const header = document.createElement("header");
+    const divHeader = document.createElement("div");
+    const headerLogo = document.createElement("a");
 
     headerLogo.href = ".";
     headerLogo.innerText = "Todo List";
     headerLogo.id = "logo";
-    
+
     header.appendChild(divHeader);
     divHeader.appendChild(headerLogo);
 
@@ -18,13 +18,13 @@ function createHeader() {
 }
 
 function createFooter() {
-    const footer = document.createElement('footer');
-    const divFooter = document.createElement('div');
-    const footerLink = document.createElement('a');
+    const footer = document.createElement("footer");
+    const divFooter = document.createElement("div");
+    const footerLink = document.createElement("a");
 
     footerLink.href = "https://github.com/rudnam/odin-todo-list";
     footerLink.innerText = "Github repo";
-    
+
     footer.appendChild(divFooter);
     divFooter.appendChild(footerLink);
 
@@ -32,15 +32,13 @@ function createFooter() {
 }
 
 export default function initialize() {
-    const content = document.createElement('div');
+    const content = document.createElement("div");
 
-    content.id = 'content';
+    content.id = "content";
 
     document.body.appendChild(createHeader());
     document.body.appendChild(content);
     document.body.appendChild(createFooter());
 
     loadUI();
-
-    return;
 }

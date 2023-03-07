@@ -1,304 +1,306 @@
 /* style.css */
 @font-face {
-    font-family: Matter;
-    src: url(../fonts/Matter-Regular.otf);
-  }
+  font-family: Matter;
+  src: url(../fonts/Matter-Regular.otf);
+}
 
 @font-face {
-    font-family: Matter;
-    src: url(../fonts/Matter-Bold.otf);
-    font-weight: bold;
+  font-family: Matter;
+  src: url(../fonts/Matter-Bold.otf);
+  font-weight: bold;
 }
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 :root {
-    --white: #fff;
-    --black: #1f2028;
-    --blue: #36a3ff;
-    --light: #a9adc1;
-    --grey: #2e3039;
-    --light-sub: #7a7c85;
-    --red: #ff4545;
-    --yellow: #ffd644;
-    --transparent: #2e303941;
-    --default-width: min(800px,100%);
+  --white: #fff;
+  --black: #1f2028;
+  --blue: #36a3ff;
+  --light: #a9adc1;
+  --grey: #2e3039;
+  --light-sub: #7a7c85;
+  --red: #ff4545;
+  --yellow: #ffd644;
+  --transparent: #2e303941;
+  --default-width: min(800px, 100%);
 
-    font-family: "Matter",sans-serif;
-    font-size: 16px;
-    overflow-x: hidden;
+  font-family: "Matter", sans-serif;
+  font-size: 16px;
+  overflow-x: hidden;
 }
 
 body {
-    margin: 0 auto;
-    display: flex;
-    align-items: stretch;
-    flex-direction: column;
-    min-height: 100vh;
-    background-color: var(--black);
-    color: var(--light);
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--black);
+  color: var(--light);
 }
 
 header {
-    font-weight: bold;
-    font-size: 1.5rem;
-    color: var(--blue);
-    padding: 10px;
-    padding-left: 50px;
-    border: 1px solid var(--grey);
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: var(--blue);
+  padding: 10px;
+  padding-left: 50px;
+  border: 1px solid var(--grey);
 }
 
 #content {
-    padding: 20px 50px;
-    min-height: 100%;
+  padding: 20px 50px;
+  min-height: 100%;
 }
 
 #title {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 
 #container {
-    margin-top: 10px;
-    padding: 10px 0px 20px;
-    display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: 300px;
-    align-items: flex-start;
-    gap: 15px;
-    overflow-x: auto;
-    min-height: 200px;
+  margin-top: 10px;
+  padding: 10px 0px 20px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 300px;
+  align-items: flex-start;
+  gap: 15px;
+  overflow-x: auto;
+  min-height: 200px;
 }
 
 #add-list:hover {
-    background-color: var(--grey);
-    cursor: pointer;
+  background-color: var(--grey);
+  cursor: pointer;
 }
 
 #add-list-label {
-    text-align: center;
+  text-align: center;
 }
 
 #add-list-input {
-    padding: inherit;
-    color: inherit;
-    font-family: inherit;
-    font-size: 1rem;
-    background: none;
-    border: none;
+  padding: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1rem;
+  background: none;
+  border: none;
 }
 
 .list {
-    border: 1px solid var(--grey);
-    border-radius: 7px;
-    padding: 10px;
-    background-color: var(--transparent)
+  border: 1px solid var(--grey);
+  border-radius: 7px;
+  padding: 10px;
+  background-color: var(--transparent);
 }
 
 .list-header {
-    display: flex;
+  display: flex;
 }
 
 .list-title {
-    font-size: 1.1rem;
-    padding: 10px;
-    margin: none;
-    color: inherit;
-    font-family: inherit;
-    background: none;
-    border: none;
+  font-size: 1.1rem;
+  padding: 10px;
+  margin: none;
+  color: inherit;
+  font-family: inherit;
+  background: none;
+  border: none;
 }
 
 .list-options {
-    margin: auto;
-    margin-right: 0px;
-    cursor: pointer;
-    height: 100%;
-    aspect-ratio: 1 / 1;
+  margin: auto;
+  margin-right: 0px;
+  cursor: pointer;
+  height: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .list * {
-    outline: none;
+  outline: none;
 }
 
 .anchor {
-    position: relative;
-    display: none;
+  position: relative;
+  display: none;
 }
 
 .popover {
-    border-radius: 5px;
-    width: 100px;
-    padding: 10px;
-    position: absolute;
-    left: 25px;
-    background-color: var(--grey);
-    display: flex;
-    flex-direction: column;
+  border-radius: 5px;
+  width: 100px;
+  padding: 10px;
+  position: absolute;
+  left: 25px;
+  background-color: var(--grey);
+  display: flex;
+  flex-direction: column;
 }
 
 .popover-label {
-    font-size: 0.8rem;
-    padding: 5px;
+  font-size: 0.8rem;
+  padding: 5px;
 }
 
 .popover-sort {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .popover-sort li {
-    cursor: pointer;
-    padding: 5px;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .popover-options {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .popover-options li {
-    cursor: pointer;
-    padding: 5px;
+  cursor: pointer;
+  padding: 5px;
 }
 
 .todo {
-    padding: 10px;
-    border-radius: 5px;
-    display: flex;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
 }
 
 .todo-body {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
 
 .todo-desc {
-    font-size: 0.8rem;
-    color: var(--light-sub);
-    white-space: normal;
-    word-wrap: break-word;
+  font-size: 0.8rem;
+  color: var(--light-sub);
+  white-space: normal;
+  word-wrap: break-word;
 }
 
 .hide-overflow {
-    overflow-wrap: anywhere;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .todo-edit-body {
-    width: calc(100% - 60px);
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    gap: 5px;
+  width: calc(100% - 60px);
+  display: none;
+  flex-direction: column;
+  padding: 10px;
+  gap: 5px;
 }
 
 .todo-edit-title {
-    margin: none;
-    color: inherit;
-    font-family: inherit;
-    font-size: 1rem;
-    background: none;
-    border: none;
+  margin: none;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1rem;
+  background: none;
+  border: none;
 }
 
 .todo-edit-desc {
-    color: var(--light);
-    font-family: inherit;
-    font-size: 0.8rem;
-    background: none;
-    border: none;
-    height: 80px;
-    outline: none;
-    box-shadow: none;
-    resize: none;
+  color: var(--light);
+  font-family: inherit;
+  font-size: 0.8rem;
+  background: none;
+  border: none;
+  height: 80px;
+  outline: none;
+  box-shadow: none;
+  resize: none;
 }
 
-.todo-mark, .todo-close, .add-todo-mark {
-    margin: auto 0;
-    height: 100%;
-    aspect-ratio: 1 / 1;
+.todo-mark,
+.todo-close,
+.add-todo-mark {
+  margin: auto 0;
+  height: 100%;
+  aspect-ratio: 1 / 1;
 }
 
 .todo-close {
-    margin-left: auto;
-    visibility: hidden;
+  margin-left: auto;
+  visibility: hidden;
 }
 
 .add-todo {
-    padding: 10px 10px 10px 7.5px;
-    display: flex;
-    border-radius: 5px;
+  padding: 10px 10px 10px 7.5px;
+  display: flex;
+  border-radius: 5px;
 }
 
 .add-todo:hover:not(:focus) {
-    background-color: var(--grey);
-    cursor: pointer;
+  background-color: var(--grey);
+  cursor: pointer;
 }
 
 .add-todo-label {
-    padding: 10px;
+  padding: 10px;
 }
 
 .add-todo-form {
-    display: none;
-    flex-direction: column;
-    gap: 10px;
+  display: none;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .add-todo-input {
-    padding: inherit;
-    color: inherit;
-    font-family: inherit;
-    font-size: 1rem;
-    background: none;
-    border: none;
+  padding: inherit;
+  color: inherit;
+  font-family: inherit;
+  font-size: 1rem;
+  background: none;
+  border: none;
 }
 
 .add-todo-area {
-    color: inherit;
-    font-family: inherit;
-    background: none;
-    border: none;
-    overflow: auto;
-    outline: none;
-    box-shadow: none;
-    resize: none;
+  color: inherit;
+  font-family: inherit;
+  background: none;
+  border: none;
+  overflow: auto;
+  outline: none;
+  box-shadow: none;
+  resize: none;
 }
 
 .todo:hover:not(:focus) {
-    background-color: var(--grey);
-    cursor: pointer;
+  background-color: var(--grey);
+  cursor: pointer;
 }
 
 footer {
-    text-align: center;
-    margin-top: auto;
-    padding: 10px;
+  text-align: center;
+  margin-top: auto;
+  padding: 10px;
 }
 
 .popover li:hover {
-    color: var(--white);
-    cursor: pointer;
+  color: var(--white);
+  cursor: pointer;
 }
