@@ -216,13 +216,12 @@ const DOM = (() => {
             update();
         };
 
-        todoEditColorInput.onchange = () => {
-            if (todoEditColorInput.value === '#a9adc1') {
-                todoEditColorReset.style.display = 'none';
+        todoEditDateInput.onchange = () => {
+            if (todoEditDateInput.value === '') {
+                todoEditDateReset.style.display = 'none';
             } else {
-                todoEditColorReset.style.display = 'block';
+                todoEditDateReset.style.display = 'block';
             }
-            todoEditTitle.style.color = todoEditColorInput.value;
         }
 
         todoEditDateReset.onmouseover = () => {
@@ -235,6 +234,15 @@ const DOM = (() => {
             todoEditDateInput.value = '';
             todoEditDateReset.style.display = 'none';
         };
+
+        todoEditColorInput.onchange = () => {
+            if (todoEditColorInput.value === '#a9adc1') {
+                todoEditColorReset.style.display = 'none';
+            } else {
+                todoEditColorReset.style.display = 'block';
+            }
+            todoEditTitle.style.color = todoEditColorInput.value;
+        }
 
         todoEditColorReset.onmouseover = () => {
             todoEditColorReset.src = resetWhite;
