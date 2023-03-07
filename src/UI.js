@@ -141,7 +141,12 @@ const DOM = (() => {
         const todoEditBody = document.createElement('div');
         const todoEditTitle = document.createElement('input');
         const todoEditDesc = document.createElement('textarea');
-        const todoEditDate = document.createElement('input');
+        const todoEditDate = document.createElement('div');
+        const todoEditDateLabel = document.createElement('p');
+        const todoEditDateInput = document.createElement('input');
+        const todoEditPriority = document.createElement('div');
+        const todoEditPriorityLabel = document.createElement('p');
+        const todoEditPriorityInput = document.createElement('input');
         const todoClose = document.createElement('img');
 
         todo.classList.add('todo');
@@ -155,6 +160,11 @@ const DOM = (() => {
         todoEditTitle.classList.add('todo-edit-title');
         todoEditDesc.classList.add('todo-edit-desc');
         todoEditDate.classList.add('todo-edit-date');
+        todoEditDateLabel.classList.add('todo-edit-date-label');
+        todoEditDateInput.classList.add('todo-edit-date-input');
+        todoEditPriority.classList.add('todo-edit-priority');
+        todoEditPriorityLabel.classList.add('todo-edit-priority-label');
+        todoEditPriorityInput.classList.add('todo-edit-priority-input');
         todoClose.classList.add('todo-close');
         todoMark.src = checkOutline;
         todoTitle.innerText = task.title;
@@ -164,8 +174,12 @@ const DOM = (() => {
         todoEditTitle.value = task.title;
         todoEditDesc.placeholder = 'description';
         todoEditDesc.value = task.description;
-        todoEditDate.type = 'date';
-        todoEditDate.value = task.dueDate;
+        todoEditDateLabel.innerText = 'Date: ';
+        todoEditDateInput.type = 'date';
+        todoEditDateInput.value = task.dueDate;
+        todoEditPriorityLabel.innerText = 'Priority: ';
+        todoEditPriorityInput.type = 'number';
+        todoEditPriorityInput.value = task.priority ? task.priority : 0;
         todoClose.src = close;
 
         todoMark.onmouseover = () => {
@@ -199,7 +213,8 @@ const DOM = (() => {
                         task,
                         todoEditTitle.value,
                         todoEditDesc.value,
-                        todoEditDate.value
+                        todoEditDateInput.value,
+                        todoEditPriorityInput.value
                     );
                     todoBody.style.display = 'flex';
                     todoEditBody.style.display = 'none';
@@ -218,6 +233,11 @@ const DOM = (() => {
         todoEditBody.appendChild(todoEditTitle);
         todoEditBody.appendChild(todoEditDesc);
         todoEditBody.appendChild(todoEditDate);
+        todoEditBody.appendChild(todoEditPriority);
+        todoEditDate.appendChild(todoEditDateLabel);
+        todoEditDate.appendChild(todoEditDateInput);
+        todoEditPriority.appendChild(todoEditPriorityLabel);
+        todoEditPriority.appendChild(todoEditPriorityInput);
 
         return todo;
     };
@@ -228,7 +248,9 @@ const DOM = (() => {
         const addTodoForm = document.createElement('div');
         const addTodoInput = document.createElement('input');
         const addTodoArea = document.createElement('textarea');
-        const addTodoDate = document.createElement('input');
+        const addTodoDate = document.createElement('div');
+        const addTodoDateLabel = document.createElement('p');
+        const addTodoDateInput = document.createElement('input');
         const addTodoMark = document.createElement('img');
 
         addTodo.classList.add('add-todo');
@@ -238,9 +260,12 @@ const DOM = (() => {
         addTodoInput.classList.add('add-todo-input');
         addTodoArea.classList.add('add-todo-area');
         addTodoDate.classList.add('add-todo-date');
-        addTodoDate.type = 'date';
+        addTodoDateLabel.classList.add('add-todo-date-label');
+        addTodoDateInput.classList.add('add-todo-date-input');
+        addTodoDateInput.type = 'date';
         addTodoMark.src = add;
         addTodoLabel.innerText = 'Add a task';
+        addTodoDateLabel.innerText = 'Date: ';
         addTodoInput.placeholder = 'Title';
         addTodoArea.placeholder = 'description';
 
@@ -263,14 +288,14 @@ const DOM = (() => {
                     addTodoInput.value,
                     addTodoArea.value,
                     listid,
-                    addTodoDate.value
+                    addTodoDateInput.value
                 );
                 addTodoLabel.style.display = 'block';
                 addTodoMark.style.display = 'block';
                 addTodoForm.style.display = 'none';
                 addTodoInput.value = '';
                 addTodoArea.value = '';
-                addTodoDate.value = '';
+                addTodoDateInput.value = '';
                 update();
             }
         };
@@ -281,6 +306,8 @@ const DOM = (() => {
         addTodoForm.appendChild(addTodoInput);
         addTodoForm.appendChild(addTodoArea);
         addTodoForm.appendChild(addTodoDate);
+        addTodoDate.appendChild(addTodoDateLabel);
+        addTodoDate.appendChild(addTodoDateInput);
 
         return addTodo;
     };
@@ -306,6 +333,17 @@ const DOM = (() => {
         popoverPriority.innerText = 'Priority';
         popoverDelete.innerText = 'Delete list';
         popoverSetcolor.innerText = 'Set color';
+
+        switch (list.sortType) {
+        case 1:
+            popoverDate.classList.add('enabled');
+            break;
+        case 2:
+            popoverPriority.classList.add('enabled');
+            break;
+        default:
+            break;
+        }
 
         popoverDelete.onclick = () => {
             app.deleteList(list);

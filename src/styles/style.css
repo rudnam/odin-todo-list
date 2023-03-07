@@ -243,6 +243,30 @@ header {
   aspect-ratio: 1 / 1;
 }
 
+.todo-edit-date {
+  display: flex;
+}
+
+.todo-edit-date-label {
+  width: 50px;
+}
+
+.todo-edit-date-input {
+  width: 110px;
+}
+
+.todo-edit-priority {
+  display: flex;
+}
+
+.todo-edit-priority-label {
+  width: 70px;
+}
+
+.todo-edit-priority-input {
+  width: 50px; 
+}
+
 .todo-close {
   margin-left: auto;
   visibility: hidden;
@@ -289,6 +313,18 @@ header {
   resize: none;
 }
 
+.add-todo-date {
+  display: flex;
+}
+
+.add-todo-date-label {
+  width: 50px;
+}
+
+.add-todo-date-input {
+  width: 110px;
+}
+
 .todo:hover:not(:focus) {
   background-color: var(--grey);
   cursor: pointer;
@@ -303,4 +339,9 @@ footer {
 .popover li:hover {
   color: var(--white);
   cursor: pointer;
+}
+
+.enabled {
+  text-decoration: underline;
+  font-weight: 600;
 }

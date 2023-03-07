@@ -13,10 +13,10 @@ const app = (() => {
     
     };
 
-    const sortList = (list) => {
+    const sortList = (list, sortType=list.sortType) => {
 
         const listObj = list;
-        switch (list.sortType) {
+        switch (sortType) {
         case 1:
         // sort by date
             list.items.sort((a, b) => {
@@ -34,10 +34,10 @@ const app = (() => {
         case 2:
         // sort by priority
             list.items.sort((a, b) => {
-                if (a.priority < b.priority) {
+                if (Number(a.priority) < Number(b.priority)) {
                     return -1;
                 }
-                if (a.priority > b.priority) {
+                if (Number(a.priority) > Number(b.priority)) {
                     return 1;
                 }
                 return 0;
@@ -71,12 +71,14 @@ const app = (() => {
         task,
         title = task.title,
         description = task.description,
-        dueDate = task.dueDate
+        dueDate = task.dueDate,
+        priority = task.priority
     ) => {
         const taskObj = task;
         taskObj.title = title;
         taskObj.description = description;
         taskObj.dueDate = dueDate;
+        taskObj.priority = priority;
         lists.forEach((list) => {
             if (list.id === task.parentid) {
                 sortList(list);

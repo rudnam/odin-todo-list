@@ -1,12 +1,12 @@
 // lists.js
 
 export default class List {
-    constructor(name) {
+    constructor(name,sortType=1) {
         this.name = name;
         this.items = [];
         this.id = `id${Math.random().toString(16).slice(2)}`;
         this.completed = [];
-        this.sortType = 1;
+        this.sortType = sortType;
     }
 
     addItem(item) {

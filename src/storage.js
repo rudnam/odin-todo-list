@@ -13,14 +13,15 @@ const storage = (() => {
         const lists = [];
 
         data.forEach((list) => {
-            const newList = new List(list.name);
+            const newList = new List(list.name,list.sortType);
 
             list.items.forEach((task) => {
                 const newTodo = new ToDo(
                     task.title,
                     task.description,
                     newList.id,
-                    task.dueDate
+                    task.dueDate,
+                    task.priority
                 );
                 newList.addItem(newTodo);
             });
