@@ -68,10 +68,12 @@ const DOM = (() => {
             addListLabel.style.display = 'none';
             addListInput.style.display = 'block';
             addListInput.focus();
+            let flag = false;
             document.body.onclick = (e) => {
-                if (!addList.contains(e.target)) {
+                if (!flag && !addList.contains(e.target)) {
                     addListLabel.style.display = 'block';
                     addListInput.style.display = 'none';
+                    flag = true;
                 }
             };
         };
@@ -117,9 +119,11 @@ const DOM = (() => {
 
         divListOptions.onclick = () => {
             popover.style.display = 'block';
+            let flag = false;
             document.body.onclick = (e) => {
-                if (!divListOptions.contains(e.target) && !popover.contains(e.target)) {
+                if (!flag && !divListOptions.contains(e.target) && !popover.contains(e.target)) {
                     popover.style.display = 'none';
+                    flag = true;
                 }
             };
         };
@@ -291,12 +295,12 @@ const DOM = (() => {
             app.deleteTodo(task);
             update();
         };
-
         todo.onclick = () => {
             todoBody.style.display = 'none';
             todoEditBody.style.display = 'flex';
+            let flag = false;
             document.body.onclick = (e) => {
-                if (!todo.contains(e.target)) {
+                if (!flag && !todo.contains(e.target)) {
                     app.updateTodo(
                         task,
                         todoEditTitle.value,
@@ -308,6 +312,7 @@ const DOM = (() => {
                     todoBody.style.display = 'flex';
                     todoEditBody.style.display = 'none';
                     update();
+                    flag = true;
                 }
             };
         };
@@ -385,11 +390,13 @@ const DOM = (() => {
             addTodoLabel.style.display = 'none';
             addTodoMark.style.display = 'none';
             addTodoForm.style.display = 'flex';
+            let flag = false;
             document.body.onclick = (e) => {
-                if (!addTodo.contains(e.target)) {
+                if (!flag && !addTodo.contains(e.target)) {
                     addTodoLabel.style.display = 'block';
                     addTodoMark.style.display = 'block';
                     addTodoForm.style.display = 'none';
+                    flag = true;
                 }
             };
         };

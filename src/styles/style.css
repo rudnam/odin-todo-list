@@ -11,8 +11,8 @@
 }
 
 @font-face {
-  font-family: 'Hiragino Kaku Gothic Pro';
-  src: url(../fonts/Hiragino-Kaku-Gothic-Pro-W3.otf);
+  font-family: "IBM Plex Sans JP";
+  src: url(../fonts/IBMPlexSansJP-Regular.ttf);
 }
 
 * {
@@ -45,7 +45,7 @@ ul {
   --transparent: #2e303941;
   --default-width: min(800px, 100%);
 
-  font-family: "Matter", 'Hiragino Kaku Gothic Pro', sans-serif;
+  font-family: "Matter", "IBM Plex Sans JP", sans-serif;
   font-size: 16px;
   overflow-x: hidden;
 }
